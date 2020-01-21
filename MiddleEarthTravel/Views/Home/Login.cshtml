@@ -1,0 +1,23 @@
+﻿@using RangersOfTheNorth.Models;
+@model Member
+@{
+    ViewBag.Title = "Log In - Rangers of the North";
+}
+
+<div>
+
+    @using (Html.BeginForm("Login", "Home"))
+    {
+        <div>
+            @Html.LabelFor(m => m.MemberName);
+            @Html.EditorFor(m => m.MemberName);
+            @Html.ValidationMessageFor(m => m.MemberName);
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Password);
+            @Html.EditorFor(m => m.Password);
+            @Html.ValidationMessageFor(m => m.Password);
+        </div>
+    }
+
+</div>

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Rangers of the North";
+}
+
+<div>
+    A travel advisory site for the free people of Middle Earth west of the Misty Mountains.
+</div>
+
+@if (ViewBag.member != null)
+{
+    <div>
+        Welcome, @ViewBag.member!
+    </div>
+}
+
+<ul>
+    <li>
+        <a href=@Url.Action("LoginStart", "Home")>Login</a>
+    </li>
+    <li>
+        <a href=@Url.Action("RegisterStart", "Home")>Register</a>
+    </li>
+    <li>
+        <a href=@Url.Action("Index", "Hazard", new { arrange = "newest" })>View most recent hazards</a>
+    </li>
+    <li>
+        <a href=@Url.Action("Index", "Hazard", new { arrange = "place" })>View hazards by region</a>
+    </li>
+    <li>
+        <a href=@Url.Action("Index", "Member", new { arrange = "newest" })>Find members</a>
+    </li>
+    <li>
+        <a href=@Url.Action("OwnInfo", "Member")>Your account</a>
+    </li>
+</ul>

@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+
+@switch (ViewBag.arrange)
+{
+    case "newest":
+        <div>newest members</div>
+        break;
+    case "oldest":
+        <div>oldest members</div>
+        break;
+    case "active":
+        <div>most active members</div>
+        break;
+}
+

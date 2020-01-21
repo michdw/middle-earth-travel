@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+
+@switch (ViewBag.arrange)
+{
+    case "newest":
+        <div>newest hazards</div>
+        break;
+    case "place":
+        <div>hazards by location</div>
+        break;
+
+    default:
+        break;
+}
+
