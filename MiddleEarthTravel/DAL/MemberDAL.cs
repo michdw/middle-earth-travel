@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using RangersOfTheNorth.Models;
+using MiddleEarthTravel.Models;
 using Dapper;
 
-namespace RangersOfTheNorth.DAL
+namespace MiddleEarthTravel.DAL
 {
     public class MemberDAL
     {
@@ -16,33 +16,33 @@ namespace RangersOfTheNorth.DAL
             this.connectionString = connectionString;
         }
 
-        readonly string registerMember =
-            "INSERT INTO [members] (MemberName, Password, About, IsAdmin, MemberSince) " +
-            "VALUES (@membername, @password, @about, @isAdmin, @memberSince)";
+        readonly string checkForUserName =
+            "SELECT UserName FROM [members] WHERE UserName = @userName";
         readonly string getMemberByName =
-            "SELECT MemberName FROM [members] WHERE MemberName = @membername";
+            "SELECT * FROM [members] WHERE UserName = @userName";
+        readonly string registerMember =
+            "INSERT INTO [members] (UserName, Password, About, IsAdmin, MemberSince) " +
+            "VALUES (@username, @password, @about, @isAdmin, @memberSince)";
 
+
+        public bool CheckForUserName(string userName)
+        {
+            using SqlConnection db = new SqlConnection(connectionString);
+            List<string> list = db.Query<string>(checkForUserName, new { userName }).ToList();
+            return list.Count > 0;
+        }
+
+        public Member GetMemberByName(string userName)
+        {
+            using SqlConnection db = new SqlConnection(connectionString);
+            Member member = db.Query<Member>(getMemberByName, new { userName }).ToList().FirstOrDefault();
+            return member;
+        }
 
         public void RegisterMember(Member member)
         {
             using SqlConnection db = new SqlConnection(connectionString);
-            db.Execute(registerMember, new { memberName = member.MemberName, password = member.Password, about = member.About, isAdmin = member.IsAdmin, memberSince = member.MemberSince });
+            db.Execute(registerMember, new { member.UserName, password = member.Password, about = member.About, isAdmin = member.IsAdmin, memberSince = member.MemberSince });
         }
-
-        public Member GetMemberByName(string memberName)
-        {
-            using SqlConnection db = new SqlConnection(connectionString);
-            return db.Query<Member>(getMemberByName, new { memberName }) as Member;
-        }
-
-        public bool CheckForMemberName(string memberName)
-        {
-            using SqlConnection db = new SqlConnection(connectionString);
-            List<string> list = db.Query<string>(getMemberByName, new { memberName }).ToList();
-            return list.Count > 0;
-
-        }
-
-
     }
 }

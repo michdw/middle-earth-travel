@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MiddleEarthTravel.DAL;
+using MiddleEarthTravel.Models;
 
-namespace RangersOfTheNorth.Controllers
+namespace MiddleEarthTravel.Controllers
 {
     public class MemberController : Controller
     {
+        readonly MemberDAL memberSQL = new MemberDAL(ConfigurationManager.ConnectionStrings["METravelDB"].ConnectionString);
+
         public ActionResult Index(string arrange)
         {
             ViewBag.arrange = arrange;
@@ -16,12 +21,21 @@ namespace RangersOfTheNorth.Controllers
 
         public ActionResult OwnInfo()
         {
-            return View();
+            Member credentials = Session["member"] as Member;
+            return View(credentials);
         }
 
-        public ActionResult ChangeInfo()
+        public ActionResult ChangeName()
         {
-            return View("OwnMemberInfo");
+            return View("Index", "Home");
+        }
+        public ActionResult ChangePassword()
+        {
+            return View("Index", "Home");
+        }        
+        public ActionResult RemoveMember()
+        {
+            return View("Index", "Home");
         }
 
         public ActionResult OtherMemberInfo()
@@ -29,17 +43,5 @@ namespace RangersOfTheNorth.Controllers
             return View("MemberInfo");
         }
 
-        public ActionResult RequestMakeAdmin()
-        {
-            return null;
-        }
-        public ActionResult AdminApprove()
-        {
-            return null;
-        }
-        public ActionResult AdminDeny()
-        {
-            return null;
-        }
     }
 }

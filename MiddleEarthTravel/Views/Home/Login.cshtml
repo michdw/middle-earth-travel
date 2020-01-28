@@ -1,5 +1,6 @@
-﻿@using RangersOfTheNorth.Models;
+﻿@using MiddleEarthTravel.Models;
 @model Member
+
 @{
     ViewBag.Title = "Log In - Rangers of the North";
 }
@@ -8,16 +9,16 @@
 
     @using (Html.BeginForm("Login", "Home"))
     {
+        @Html.ValidationMessage("login-error")
         <div>
-            @Html.LabelFor(m => m.MemberName);
-            @Html.EditorFor(m => m.MemberName);
-            @Html.ValidationMessageFor(m => m.MemberName);
+            @Html.LabelFor(m => m.UserName)
+            @Html.EditorFor(m => m.UserName)
         </div>
         <div>
-            @Html.LabelFor(m => m.Password);
-            @Html.EditorFor(m => m.Password);
-            @Html.ValidationMessageFor(m => m.Password);
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password)
         </div>
+        <button type="submit">login</button>
     }
 
 </div>

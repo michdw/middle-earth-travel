@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="~/Content/Styles.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @{ 
+        bool logged_in = (bool)(Session["member"]!=null);
+    }
 </head>
 <body>
 
@@ -17,7 +20,16 @@
     </div>
     <div class="navbar">
         <a href=@Url.Action("Index", "Home")>Home</a>
-        <a href=@Url.Action("Logout", "Home")>Logout</a>
+
+        @if (logged_in)
+        {
+            <a href=@Url.Action("Logout", "Home")>Logout</a>
+        }
+        else
+        {
+            <a href=@Url.Action("LoginStart", "Home")>Login</a>
+            <a href=@Url.Action("RegisterStart", "Home")>Register</a>
+        }
     </div>
 
     <div class="container body-content">

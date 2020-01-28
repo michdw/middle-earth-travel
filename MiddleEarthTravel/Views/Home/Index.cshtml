@@ -1,4 +1,7 @@
-﻿@{
+﻿@using MiddleEarthTravel.Models
+@model Member
+
+@{
     ViewBag.Title = "Rangers of the North";
 }
 
@@ -6,20 +9,30 @@
     A travel advisory site for the free people of Middle Earth west of the Misty Mountains.
 </div>
 
-@if (ViewBag.member != null)
+@if (Model.UserName != null)
 {
     <div>
-        Welcome, @ViewBag.member!
+        Welcome, @Model.UserName!
     </div>
 }
 
 <ul>
-    <li>
-        <a href=@Url.Action("LoginStart", "Home")>Login</a>
-    </li>
-    <li>
-        <a href=@Url.Action("RegisterStart", "Home")>Register</a>
-    </li>
+    @if (Model.UserName == null)
+    {
+        <li>
+            <a href=@Url.Action("LoginStart", "Home")>Login</a>
+        </li>
+        <li>
+            <a href=@Url.Action("RegisterStart", "Home")>Register</a>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a href=@Url.Action("OwnInfo", "Member")>Your account</a>
+        </li>
+    }
+
     <li>
         <a href=@Url.Action("Index", "Hazard", new { arrange = "newest" })>View most recent hazards</a>
     </li>
@@ -29,7 +42,12 @@
     <li>
         <a href=@Url.Action("Index", "Member", new { arrange = "newest" })>Find members</a>
     </li>
-    <li>
-        <a href=@Url.Action("OwnInfo", "Member")>Your account</a>
-    </li>
+
+    @if (Model.IsAdmin)
+    {
+        <li>
+            <a href=@Url.Action("Index", "Admin", new { arrange = "newest" })>Admin options</a>
+        </li>
+    }
+
 </ul>

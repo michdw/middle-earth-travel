@@ -4,23 +4,26 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using RangersOfTheNorth.DAL;
-using RangersOfTheNorth.Models;
+using MiddleEarthTravel.DAL;
+using MiddleEarthTravel.Models;
 
 
-namespace RangersOfTheNorth.Controllers
+namespace MiddleEarthTravel.Controllers
 {
     public class HomeController : Controller
     {
         readonly MemberDAL memberSQL = new MemberDAL(ConfigurationManager.ConnectionStrings["METravelDB"].ConnectionString);
 
+
         public ActionResult Index()
         {
+            Member credentials = new Member();
             if (Session["member"] != null)
             {
-                ViewBag.member = Session["member"].ToString();
+                credentials = Session["member"] as Member;
+                ViewBag.name = credentials.UserName;
             }
-            return View();
+            return View(credentials);
         }
 
         public ActionResult RegisterStart()
@@ -30,62 +33,71 @@ namespace RangersOfTheNorth.Controllers
         }
         public ActionResult Register(Member newMember)
         {
-            //ActionResult RegisterError(string message)
-            //{
-            //    ModelState.AddModelError("invalid-credentials", message);
-            //    return RedirectToAction("RegisterStart");
-            //}
-
-            //any missing fields?
-            if (newMember.MemberName == null || newMember.Password == null)
+            if (newMember.UserName == null || newMember.Password == null)
             {
-                ModelState.AddModelError("invalid-credentials", "Please enter a name and password");
-                return RedirectToAction("RegisterStart");
+                ModelState.AddModelError("register-error", "missing name or password");
+                return View("Register", newMember);
             }
 
-            //member name exists?
-
-            bool nameExists = memberSQL.CheckForMemberName(newMember.MemberName);
+            bool nameExists = memberSQL.CheckForUserName(newMember.UserName);
             if (nameExists)
             {
-                ModelState.AddModelError("invalid-credentials", "Please enter a name and password");
-                return RedirectToAction("RegisterStart");
+                ModelState.AddModelError("register-error", "name already in use");
+                return View("Register", newMember);
             }
 
-            //passwords dont match?
+            if (newMember.Password != newMember.ConfirmPassword)
+            {
+                ModelState.AddModelError("register-error", "passwords dont match");
+                return View("Register", newMember);
+            }
 
-
-
-            Session["member"] = newMember.MemberName;
+            Session["member"] = newMember;
+            TempData["msg"] = "register";
             newMember.MemberSince = DateTime.Now;
             memberSQL.RegisterMember(newMember);
             return RedirectToAction("Index");
         }
+
 
         public ActionResult LoginStart()
         {
             Member member = new Member();
             return View("Login", member);
         }
-        public ActionResult Login(Member currentMember)
+        public ActionResult Login(Member credentials)
         {
-            //any missing fields?
 
-            //get member by member name
+            if (credentials.UserName == null || credentials.Password == null)
+            {
+                ModelState.AddModelError("login-error", "null name or password");
+                return View("Login", credentials);
+            }
 
-            //member name not found?
+            bool nameExists = memberSQL.CheckForUserName(credentials.UserName);
+            if (!nameExists)
+            {
+                ModelState.AddModelError("login-error", "name not found");
+                return View("Login", credentials);
+            }
 
-            //wrong password?
+            Member member = memberSQL.GetMemberByName(credentials.UserName);
+            if (member.Password != credentials.Password)
+            {
+                ModelState.AddModelError("login-error", "incorrect password");
+                return View("Login", credentials);
+            }
 
-            Session["memberID"] = currentMember.MemberID;
-            return RedirectToAction("Home");
+            Session["member"] = member;
+            TempData["msg"] = "login";
+            return RedirectToAction("Index");
         }
 
         public ActionResult Logout()
         {
-            Session["memberID"] = null;
-            ViewBag.msg = "logged out";
-            return View("Index");
+            Session["member"] = null;
+            TempData["msg"] = "logout";
+            return RedirectToAction("Index");
         }
 
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace RangersOfTheNorth.Models
+namespace MiddleEarthTravel.Models
 {
     public class Hazard
     {
@@ -15,6 +15,11 @@ namespace RangersOfTheNorth.Models
         public List<Comment> Comments()
         {
             return null;
+        }
+
+        public DateTime MostRecentUpdate()
+        {
+            return DateTime.Now;
         }
     }
 }

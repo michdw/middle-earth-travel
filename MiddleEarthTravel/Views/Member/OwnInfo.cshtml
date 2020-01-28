@@ -1,7 +1,26 @@
-﻿
+﻿@using MiddleEarthTravel.Models
+@model Member
 @{
     ViewBag.Title = "OwnInfo";
 }
 
-<h2>OwnInfo</h2>
+<h2>Change your user info</h2>
+
+@using (Html.BeginForm("ChangeName", "Member", FormMethod.Post))
+{
+    <button type="submit">submit</button>
+}
+
+@using (Html.BeginForm("ChangePassword", "Member", FormMethod.Post))
+{
+    <button type="submit">submit</button>
+}
+
+@using (Html.BeginForm("RemoveMember", "Member", FormMethod.Post))
+{
+    <button type="submit">submit</button>
+}
+
+
+
 

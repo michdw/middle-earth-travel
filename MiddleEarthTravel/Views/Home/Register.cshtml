@@ -1,4 +1,4 @@
-﻿@using RangersOfTheNorth.Models;
+﻿@using MiddleEarthTravel.Models;
 @model Member
 @{
     ViewBag.Title = "Register - Rangers Of The North";
@@ -8,32 +8,26 @@
 
     @using (Html.BeginForm("Register", "Home"))
     {
-        @Html.ValidationMessage("invalid-credentials");
+        @Html.ValidationMessage("register-error");
         <div>
-            @Html.LabelFor(m => m.MemberName)
-            @Html.EditorFor(m => m.MemberName)
-            @Html.ValidationMessageFor(m => m.MemberName)
+            @Html.LabelFor(m => m.UserName)
+            @Html.EditorFor(m => m.UserName)
         </div>
         <div>
             @Html.LabelFor(m => m.Password)
-            @Html.EditorFor(m => m.Password)
-            @Html.ValidationMessageFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password)
 
         </div>
         <div>
             @Html.LabelFor(m => m.ConfirmPassword)
-            @Html.EditorFor(m => m.ConfirmPassword)
-            @Html.ValidationMessageFor(m => m.About)
+            @Html.PasswordFor(m => m.ConfirmPassword)
         </div>
         <div>
             @Html.LabelFor(m => m.About)
             @Html.EditorFor(m => m.About)
-            @Html.ValidationMessageFor(m => m.About)
         </div>
 
         <button type="submit">Register</button>
-        @Html.ValidationMessageFor(m => m.ConfirmPassword)
-
     }
 
 </div>

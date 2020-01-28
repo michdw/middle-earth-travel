@@ -1,6 +1,26 @@
-﻿@switch (ViewBag.msg)
-{
-    case "logged out":
-        <div class="loadmessage">you have been logged out</div>
-        break;
+﻿@{
+
+    switch (ViewBag.msg)
+    {
+
+    }
+
+    if (TempData["msg"] != null)
+    {
+        switch (TempData["msg"].ToString())
+        {
+            case "login":
+                <div class="loadmessage">login successful</div>
+                break;
+            case "register":
+                <div class="loadmessage">registration successful</div>
+                break;
+            case "logout":
+                <div class="loadmessage">you have been logged out</div>
+                break;
+
+        }
+
+    }
 }
+
