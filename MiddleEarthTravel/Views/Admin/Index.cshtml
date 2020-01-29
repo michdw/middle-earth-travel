@@ -1,7 +1,24 @@
-﻿
+﻿@using MiddleEarthTravel.Models
+@model List<Member>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
+@foreach (Member requester in Model)
+{
+    <div>
+        @requester.DisplayName
+    </div>
+    using (Html.BeginForm("Approve", "Admin", new { memberID = requester.ID }, FormMethod.Post))
+    {
+        <button type="submit">approve</button>
+    }
+    using (Html.BeginForm("Deny", "Admin", new { memberID = requester.ID }, FormMethod.Post))
+    {
+        <button type="submit">deny</button>
+    }
+
+}

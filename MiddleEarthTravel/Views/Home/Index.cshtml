@@ -9,15 +9,15 @@
     A travel advisory site for the free people of Middle Earth west of the Misty Mountains.
 </div>
 
-@if (Model.UserName != null)
+@if (Model.DisplayName != null)
 {
     <div>
-        Welcome, @Model.UserName!
+        Welcome, @Model.DisplayName!
     </div>
 }
 
 <ul>
-    @if (Model.UserName == null)
+    @if (Model.DisplayName == null)
     {
         <li>
             <a href=@Url.Action("LoginStart", "Home")>Login</a>

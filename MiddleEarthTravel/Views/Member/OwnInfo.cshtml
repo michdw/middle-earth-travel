@@ -6,19 +6,40 @@
 
 <h2>Change your user info</h2>
 
-@using (Html.BeginForm("ChangeName", "Member", FormMethod.Post))
+@using (Html.BeginForm("ChangeName", "Member", FormMethod.Post ))
 {
-    <button type="submit">submit</button>
+    <div>
+        @Html.HiddenFor(m => m.ID)
+        @Html.LabelFor(m => m.DisplayName)
+        @Html.TextBoxFor(m => m.DisplayName)
+    </div>
+
+    <button type="submit">change name</button>
 }
 
-@using (Html.BeginForm("ChangePassword", "Member", FormMethod.Post))
+@using (Html.BeginForm("ChangePassword", "Member", new { memberID = Model.ID }, FormMethod.Post ))
 {
-    <button type="submit">submit</button>
+    Html.HiddenFor(m => m.ID);
+    Html.TextBoxFor(m => m.Password);
+    Html.TextBoxFor(m => m.ConfirmPassword);
+    <button type="submit">change password</button>
+}
+
+@using (Html.BeginForm("ChangeAboutText", "Member", new { memberID = Model.ID }, FormMethod.Post ))
+{
+    Html.HiddenFor(m => m.ID);
+    Html.TextAreaFor(m => m.About);
+    <button type="submit">change description</button>
 }
 
 @using (Html.BeginForm("RemoveMember", "Member", FormMethod.Post))
 {
-    <button type="submit">submit</button>
+    <button type="submit">delete account</button>
+}
+
+@using (Html.BeginForm("AdminRequest", "Member", new { memberID = Model.ID }, FormMethod.Post ))
+{
+    <button type="submit">request to be an admin</button>
 }
 
 

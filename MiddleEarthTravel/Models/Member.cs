@@ -8,7 +8,7 @@ namespace MiddleEarthTravel.Models
     public class Member
     {
         public int ID { get; set; }
-        public string UserName { get; set; }
+        public string DisplayName { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string About { get; set; }

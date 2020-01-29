@@ -4,7 +4,7 @@
 CREATE TABLE [members]
 (
  [ID]          int IDENTITY (1, 1) NOT NULL ,
- [UserName]    varchar(50) NOT NULL ,
+ [DisplayName] varchar(50) NOT NULL ,
  [Password]    varchar(20) NOT NULL ,
  [About]       varchar(200) NULL ,
  [IsAdmin]     bit NULL ,

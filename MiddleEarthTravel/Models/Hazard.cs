@@ -7,6 +7,7 @@ namespace MiddleEarthTravel.Models
 {
     public class Hazard
     {
+        public int ID { get; set; }
         public DateTime TimeOf { get; set; }
         public Location Location { get; set; }
         public string Description { get; set; }

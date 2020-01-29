@@ -21,7 +21,7 @@ namespace MiddleEarthTravel.Controllers
             if (Session["member"] != null)
             {
                 credentials = Session["member"] as Member;
-                ViewBag.name = credentials.UserName;
+                ViewBag.name = credentials.DisplayName;
             }
             return View(credentials);
         }
@@ -33,13 +33,13 @@ namespace MiddleEarthTravel.Controllers
         }
         public ActionResult Register(Member newMember)
         {
-            if (newMember.UserName == null || newMember.Password == null)
+            if (newMember.DisplayName == null || newMember.Password == null)
             {
                 ModelState.AddModelError("register-error", "missing name or password");
                 return View("Register", newMember);
             }
 
-            bool nameExists = memberSQL.CheckForUserName(newMember.UserName);
+            bool nameExists = memberSQL.CheckForDisplayName(newMember.DisplayName);
             if (nameExists)
             {
                 ModelState.AddModelError("register-error", "name already in use");
@@ -68,20 +68,20 @@ namespace MiddleEarthTravel.Controllers
         public ActionResult Login(Member credentials)
         {
 
-            if (credentials.UserName == null || credentials.Password == null)
+            if (credentials.DisplayName == null || credentials.Password == null)
             {
                 ModelState.AddModelError("login-error", "null name or password");
                 return View("Login", credentials);
             }
 
-            bool nameExists = memberSQL.CheckForUserName(credentials.UserName);
+            bool nameExists = memberSQL.CheckForDisplayName(credentials.DisplayName);
             if (!nameExists)
             {
                 ModelState.AddModelError("login-error", "name not found");
                 return View("Login", credentials);
             }
 
-            Member member = memberSQL.GetMemberByName(credentials.UserName);
+            Member member = memberSQL.GetMemberByName(credentials.DisplayName);
             if (member.Password != credentials.Password)
             {
                 ModelState.AddModelError("login-error", "incorrect password");
