@@ -28,40 +28,45 @@ namespace MiddleEarthTravel.Controllers
         [HttpPost]
         public ActionResult ChangeName(Member member)
         {
-            if(memberSQL.CheckForDisplayName(member.DisplayName))
+            if(memberSQL.CheckForNameSens(member.DisplayName))
             {
-                TempData["msg"] = "name_exists";
+                ModelState.AddModelError("changename-error", "That name already exists");
                 return RedirectToAction("OwnInfo");
             }
             memberSQL.ChangeName(member.DisplayName, member.ID);
-            member = memberSQL.GetMemberByID(member.ID);
-            Session["member"] = member;
+            Session["member"] = memberSQL.GetMemberByID(member.ID);
             TempData["msg"] = "name_changed";
 
             return RedirectToAction("OwnInfo");
         }
 
         [HttpPost]
-        public ActionResult ChangePassword()
+        public ActionResult ChangePassword(Member member)
         {
-            return View("Index", "Home");
+            if (member.Password != member.ConfirmPassword)
+            {
+                ModelState.AddModelError("changepassword-error", "Passwords don't match");
+                return RedirectToAction("OwnInfo");
+            }
+            memberSQL.ChangePassword(member.Password, member.ID);
+            Session["member"] = memberSQL.GetMemberByID(member.ID);
+            TempData["msg"] = "password_changed";
+            return RedirectToAction("OwnInfo");
         }
 
         [HttpPost]
-        public ActionResult ChangeAboutMember()
+        public ActionResult ChangeAboutText(Member member)
         {
-            return View("Index", "Home");
+            memberSQL.ChangeAboutText(member.About, member.ID);
+            Session["member"] = memberSQL.GetMemberByID(member.ID);
+            TempData["msg"] = "about_changed";
+            return RedirectToAction("OwnInfo");
         }        
-
-        [HttpPost]
-        public ActionResult RemoveMember()
-        {
-            return View("Index", "Home");
-        }
 
         public ActionResult AdminRequest(int memberID)
         {
             memberSQL.AdminRequest(memberID);
+            TempData["msg"] = "admin_request";
             return RedirectToAction("OwnInfo");
         }
 

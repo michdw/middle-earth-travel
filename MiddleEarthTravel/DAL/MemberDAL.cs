@@ -16,7 +16,9 @@ namespace MiddleEarthTravel.DAL
             this.connectionString = connectionString;
         }
 
-        readonly string checkForDisplayName =
+        readonly string checkForNameSens =
+            "SELECT DisplayName FROM [members] WHERE DisplayName COLLATE Latin1_General_CS_AS = @displayName";        
+        readonly string checkForNameIns =
             "SELECT DisplayName FROM [members] WHERE DisplayName = @displayName";
         readonly string getMemberByName =
             "SELECT * FROM [members] WHERE DisplayName = @displayName";        
@@ -34,13 +36,25 @@ namespace MiddleEarthTravel.DAL
         readonly string adminDeny =
             "UPDATE [members] SET isAdmin = 0 WHERE ID = @memberID";
         readonly string changeName =
-            "UPDATE [members] SET DisplayName = @displayName WHERE ID = @memberID";
+            "UPDATE [members] SET DisplayName = @displayName WHERE ID = @memberID";        
+        readonly string changePassword =
+            "UPDATE [members] SET Password = @password WHERE ID = @memberID";     
+        readonly string changeAboutText =
+            "UPDATE [members] SET About = @about WHERE ID = @memberID";
 
 
-        public bool CheckForDisplayName(string displayName)
+
+        public bool CheckForNameSens(string displayName)
         {
             using SqlConnection db = new SqlConnection(connectionString);
-            List<string> list = db.Query<string>(checkForDisplayName, new { displayName }).ToList();
+            List<string> list = db.Query<string>(checkForNameSens, new { displayName }).ToList();
+            return list.Count > 0;
+        }
+
+        public bool CheckForNameIns(string displayName)
+        {
+            using SqlConnection db = new SqlConnection(connectionString);
+            List<string> list = db.Query<string>(checkForNameIns, new { displayName }).ToList();
             return list.Count > 0;
         }
 
@@ -91,6 +105,18 @@ namespace MiddleEarthTravel.DAL
         {
             using SqlConnection db = new SqlConnection(connectionString);
             db.Execute(changeName, new { displayName, memberID });
+        }
+
+        public void ChangePassword(string password, int memberID)
+        {
+            using SqlConnection db = new SqlConnection(connectionString);
+            db.Execute(changePassword, new { password, memberID });
+        }
+
+        public void ChangeAboutText(string about, int memberID)
+        {
+            using SqlConnection db = new SqlConnection(connectionString);
+            db.Execute(changeAboutText, new { about, memberID });
         }
     }
 }

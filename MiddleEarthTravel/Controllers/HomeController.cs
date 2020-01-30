@@ -39,7 +39,7 @@ namespace MiddleEarthTravel.Controllers
                 return View("Register", newMember);
             }
 
-            bool nameExists = memberSQL.CheckForDisplayName(newMember.DisplayName);
+            bool nameExists = memberSQL.CheckForNameIns(newMember.DisplayName);
             if (nameExists)
             {
                 ModelState.AddModelError("register-error", "name already in use");
@@ -52,10 +52,10 @@ namespace MiddleEarthTravel.Controllers
                 return View("Register", newMember);
             }
 
-            Session["member"] = newMember;
-            TempData["msg"] = "register";
             newMember.MemberSince = DateTime.Now;
             memberSQL.RegisterMember(newMember);
+            Session["member"] = memberSQL.GetMemberByName(newMember.DisplayName);
+            TempData["msg"] = "register";
             return RedirectToAction("Index");
         }
 
@@ -74,7 +74,7 @@ namespace MiddleEarthTravel.Controllers
                 return View("Login", credentials);
             }
 
-            bool nameExists = memberSQL.CheckForDisplayName(credentials.DisplayName);
+            bool nameExists = memberSQL.CheckForNameSens(credentials.DisplayName);
             if (!nameExists)
             {
                 ModelState.AddModelError("login-error", "name not found");

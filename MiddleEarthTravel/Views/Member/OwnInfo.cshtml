@@ -6,9 +6,10 @@
 
 <h2>Change your user info</h2>
 
-@using (Html.BeginForm("ChangeName", "Member", FormMethod.Post ))
+@using (Html.BeginForm("ChangeName", "Member", FormMethod.Post))
 {
     <div>
+        @Html.ValidationMessage("changename-error")
         @Html.HiddenFor(m => m.ID)
         @Html.LabelFor(m => m.DisplayName)
         @Html.TextBoxFor(m => m.DisplayName)
@@ -17,27 +18,33 @@
     <button type="submit">change name</button>
 }
 
-@using (Html.BeginForm("ChangePassword", "Member", new { memberID = Model.ID }, FormMethod.Post ))
+@using (Html.BeginForm("ChangePassword", "Member", FormMethod.Post))
 {
-    Html.HiddenFor(m => m.ID);
-    Html.TextBoxFor(m => m.Password);
-    Html.TextBoxFor(m => m.ConfirmPassword);
+    <div>
+        @Html.HiddenFor(m => m.ID)
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.ConfirmPassword)
+        @Html.PasswordFor(m => m.ConfirmPassword)
+    </div>
+
     <button type="submit">change password</button>
 }
 
-@using (Html.BeginForm("ChangeAboutText", "Member", new { memberID = Model.ID }, FormMethod.Post ))
+@using (Html.BeginForm("ChangeAboutText", "Member", new { memberID = Model.ID }, FormMethod.Post))
 {
-    Html.HiddenFor(m => m.ID);
-    Html.TextAreaFor(m => m.About);
+    <div>
+        @Html.HiddenFor(m => m.ID)
+        @Html.LabelFor(m => m.About)
+        @Html.TextAreaFor(m => m.About)
+    </div>
+
     <button type="submit">change description</button>
 }
 
-@using (Html.BeginForm("RemoveMember", "Member", FormMethod.Post))
-{
-    <button type="submit">delete account</button>
-}
-
-@using (Html.BeginForm("AdminRequest", "Member", new { memberID = Model.ID }, FormMethod.Post ))
+@using (Html.BeginForm("AdminRequest", "Member", new { memberID = Model.ID }, FormMethod.Post))
 {
     <button type="submit">request to be an admin</button>
 }
