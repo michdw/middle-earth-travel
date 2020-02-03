@@ -134,7 +134,6 @@
     </Compile>
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Hazard.cs" />
-    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

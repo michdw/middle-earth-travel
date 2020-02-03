@@ -7,7 +7,7 @@ ALTER TABLE [comments] DROP CONSTRAINT [FK_53]
 DROP TABLE [members];
 GO
 
-DROP TABLE [locations];
+DROP TABLE [regions];
 GO
 
 DROP TABLE [hazards];

@@ -1,0 +1,15 @@
+insert into regions(name) values
+('The Shire'),
+('Buckland / Barrow Downs'),
+('Evendim / Annúminas'),
+('Bree'),
+('Midgewater / Weather Hills'),
+('Trollshaws'),
+('Rivendell'),
+('South Downs'),
+('North Downs'),
+('Far Downs / Tower Hills'),
+('Eregion / Hollin'),
+('Grey Havens'),
+('Tharbad / Minhiriath'),
+('Ettenmoors');

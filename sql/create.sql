@@ -16,16 +16,15 @@ CREATE TABLE [members]
 GO
 
 
--- ************************************** [locations]
+-- ************************************** [regions]
 
-CREATE TABLE [locations]
+CREATE TABLE [regions]
 (
  [ID]     int IDENTITY (1, 1) NOT NULL ,
  [Name]   varchar(50) NOT NULL ,
- [Region] varchar(50) NOT NULL ,
 
 
- CONSTRAINT [PK_locations] PRIMARY KEY CLUSTERED ([ID] ASC)
+ CONSTRAINT [PK_regions] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 GO
 
@@ -35,21 +34,21 @@ GO
 CREATE TABLE [hazards]
 (
  [ID]          int IDENTITY (1, 1) NOT NULL ,
- [LocationID]  int NOT NULL ,
+ [regionID]  int NOT NULL ,
  [Status]      int NOT NULL ,
  [TimeOf]      datetime NOT NULL ,
  [Description] varchar(50) NOT NULL ,
 
 
  CONSTRAINT [PK_hazards] PRIMARY KEY CLUSTERED ([ID] ASC),
- CONSTRAINT [FK_56] FOREIGN KEY ([LocationID])  REFERENCES [locations]([ID])
+ CONSTRAINT [FK_56] FOREIGN KEY ([regionID])  REFERENCES [regions]([ID])
 );
 GO
 
 
 CREATE NONCLUSTERED INDEX [fkIdx_56] ON [hazards] 
  (
-  [LocationID] ASC
+  [regionID] ASC
  )
 
 GO

@@ -47,15 +47,15 @@ namespace MiddleEarthTravel.DAL
         public bool CheckForNameSens(string displayName)
         {
             using SqlConnection db = new SqlConnection(connectionString);
-            List<string> list = db.Query<string>(checkForNameSens, new { displayName }).ToList();
-            return list.Count > 0;
+            List<string> names = db.Query<string>(checkForNameSens, new { displayName }).ToList();
+            return names.Count > 0;
         }
 
         public bool CheckForNameIns(string displayName)
         {
             using SqlConnection db = new SqlConnection(connectionString);
-            List<string> list = db.Query<string>(checkForNameIns, new { displayName }).ToList();
-            return list.Count > 0;
+            List<string> names = db.Query<string>(checkForNameIns, new { displayName }).ToList();
+            return names.Count > 0;
         }
 
         public List<Member> GetAdminRequests()

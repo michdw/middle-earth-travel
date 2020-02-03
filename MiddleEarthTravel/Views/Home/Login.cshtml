@@ -11,7 +11,7 @@
     {
         @Html.ValidationMessage("login-error")
         <div>
-            @Html.LabelFor(m => m.DisplayName)
+            @Html.LabelFor(m => m.DisplayName, "Name")
             @Html.EditorFor(m => m.DisplayName)
         </div>
         <div>

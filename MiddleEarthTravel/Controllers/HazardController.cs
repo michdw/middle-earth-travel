@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MiddleEarthTravel.Models;
 
 namespace MiddleEarthTravel.Controllers
 {
@@ -19,16 +20,18 @@ namespace MiddleEarthTravel.Controllers
             return View("Detail");
         }
 
-        public ActionResult Report()
+        public ActionResult ReportStart()
         {
-            return View();
+            Hazard newHazard = new Hazard();
+            
+            return View("Report", newHazard);
         }
         public ActionResult ReportSubmit()
         {
             return View("List");
         }
 
-        public ActionResult Update()
+        public ActionResult UpdateStart()
         {
             return View();
         }
@@ -37,7 +40,7 @@ namespace MiddleEarthTravel.Controllers
             return View("List");
         }
 
-        public ActionResult Status()
+        public ActionResult StatusStart()
         {
             return null;
         }

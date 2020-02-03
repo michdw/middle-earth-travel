@@ -1,7 +1,26 @@
-﻿
+﻿@using MiddleEarthTravel.Models
+@model Hazard
+
+
 @{
     ViewBag.Title = "Report";
 }
 
+
 <h2>Report</h2>
+
+@using (Html.BeginForm("ReportSubmit", "Hazard", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description)
+    </div>    
+    <div>
+        @Html.LabelFor(m => m.Location)
+        @Html.ListBoxFor(m => m.Location, Model.SelectRegion())
+    </div>
+    <div>
+        
+    </div>
+}
 
