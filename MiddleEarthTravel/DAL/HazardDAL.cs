@@ -24,5 +24,7 @@ namespace MiddleEarthTravel.DAL
             using SqlConnection db = new SqlConnection(connectionString);
             return db.Query<string>(getAllRegions).ToList();
         }
+
+        
     }
 }

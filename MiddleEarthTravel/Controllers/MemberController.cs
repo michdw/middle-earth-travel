@@ -28,7 +28,7 @@ namespace MiddleEarthTravel.Controllers
         [HttpPost]
         public ActionResult ChangeName(Member member)
         {
-            if(memberSQL.CheckForNameSens(member.DisplayName))
+            if(memberSQL.CheckForNameCase(member.DisplayName))
             {
                 ModelState.AddModelError("changename-error", "That name already exists");
                 return RedirectToAction("OwnInfo");

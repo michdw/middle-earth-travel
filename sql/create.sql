@@ -34,10 +34,11 @@ GO
 CREATE TABLE [hazards]
 (
  [ID]          int IDENTITY (1, 1) NOT NULL ,
- [regionID]  int NOT NULL ,
+ [regionID]    int NOT NULL ,
  [Status]      int NOT NULL ,
  [TimeOf]      datetime NOT NULL ,
- [Description] varchar(50) NOT NULL ,
+ [Location]    varchar(100) NOT NULL ,
+ [Description] varchar(300) NOT NULL ,
 
 
  CONSTRAINT [PK_hazards] PRIMARY KEY CLUSTERED ([ID] ASC),

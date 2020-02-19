@@ -39,7 +39,7 @@ namespace MiddleEarthTravel.Controllers
                 return View("Register", newMember);
             }
 
-            bool nameExists = memberSQL.CheckForNameIns(newMember.DisplayName);
+            bool nameExists = memberSQL.CheckForNameNocase(newMember.DisplayName);
             if (nameExists)
             {
                 ModelState.AddModelError("register-error", "name already in use");
@@ -74,7 +74,7 @@ namespace MiddleEarthTravel.Controllers
                 return View("Login", credentials);
             }
 
-            bool nameExists = memberSQL.CheckForNameSens(credentials.DisplayName);
+            bool nameExists = memberSQL.CheckForNameCase(credentials.DisplayName);
             if (!nameExists)
             {
                 ModelState.AddModelError("login-error", "name not found");

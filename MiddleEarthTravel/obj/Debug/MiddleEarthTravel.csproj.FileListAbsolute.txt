@@ -1,4 +1,3 @@
-C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\obj\Debug\MiddleEarthTravel.csprojAssemblyReference.cache
 C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\bin\MiddleEarthTravel.dll.config
 C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\bin\MiddleEarthTravel.dll
 C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\bin\MiddleEarthTravel.pdb

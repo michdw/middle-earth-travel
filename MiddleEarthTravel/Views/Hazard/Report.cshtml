@@ -12,15 +12,24 @@
 @using (Html.BeginForm("ReportSubmit", "Hazard", FormMethod.Post))
 {
     <div>
-        @Html.LabelFor(m => m.Description)
+        @Html.LabelFor(m => m.Region, "Choose the region")
+        @Html.ListBoxFor(m => m.Region, Model.SelectRegion())
+
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Description, "What happened?")
         @Html.TextAreaFor(m => m.Description)
-    </div>    
-    <div>
-        @Html.LabelFor(m => m.Location)
-        @Html.ListBoxFor(m => m.Location, Model.SelectRegion())
     </div>
     <div>
-        
+        @Html.LabelFor(m => m.Location, "Where did it happen?")
+        @Html.TextAreaFor(m => m.Location)
     </div>
+    <div>
+        @Html.LabelFor(m => m.Status, "Set the status")
+        @Html.DropDownListFor(m => m.Status, Model.SelectStatus())
+    </div>
+    <button type="submit">
+        click to submit
+    </button>
 }
 

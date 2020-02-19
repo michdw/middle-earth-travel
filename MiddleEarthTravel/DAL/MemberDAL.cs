@@ -16,9 +16,9 @@ namespace MiddleEarthTravel.DAL
             this.connectionString = connectionString;
         }
 
-        readonly string checkForNameSens =
+        readonly string checkForNameCase =
             "SELECT DisplayName FROM [members] WHERE DisplayName COLLATE Latin1_General_CS_AS = @displayName";        
-        readonly string checkForNameIns =
+        readonly string checkForNameNocase =
             "SELECT DisplayName FROM [members] WHERE DisplayName = @displayName";
         readonly string getMemberByName =
             "SELECT * FROM [members] WHERE DisplayName = @displayName";        
@@ -44,17 +44,17 @@ namespace MiddleEarthTravel.DAL
 
 
 
-        public bool CheckForNameSens(string displayName)
+        public bool CheckForNameCase(string displayName)
         {
             using SqlConnection db = new SqlConnection(connectionString);
-            List<string> names = db.Query<string>(checkForNameSens, new { displayName }).ToList();
+            List<string> names = db.Query<string>(checkForNameCase, new { displayName }).ToList();
             return names.Count > 0;
         }
 
-        public bool CheckForNameIns(string displayName)
+        public bool CheckForNameNocase(string displayName)
         {
             using SqlConnection db = new SqlConnection(connectionString);
-            List<string> names = db.Query<string>(checkForNameIns, new { displayName }).ToList();
+            List<string> names = db.Query<string>(checkForNameNocase, new { displayName }).ToList();
             return names.Count > 0;
         }
 

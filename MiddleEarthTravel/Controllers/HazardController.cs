@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MiddleEarthTravel.DAL;
 using MiddleEarthTravel.Models;
 
 namespace MiddleEarthTravel.Controllers
 {
     public class HazardController : Controller
     {
+        readonly HazardDAL hazardSQL = new HazardDAL(ConfigurationManager.ConnectionStrings["METravelDB"].ConnectionString);
+
         public ActionResult Index(string arrange)
         {
             ViewBag.arrange = arrange;
@@ -23,11 +27,13 @@ namespace MiddleEarthTravel.Controllers
         public ActionResult ReportStart()
         {
             Hazard newHazard = new Hazard();
-            
             return View("Report", newHazard);
         }
-        public ActionResult ReportSubmit()
+        public ActionResult ReportSubmit(Hazard newHazard)
         {
+            newHazard.TimeOf = DateTime.Now;
+
+
             return View("List");
         }
 
