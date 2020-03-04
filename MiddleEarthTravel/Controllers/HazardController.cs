@@ -15,12 +15,15 @@ namespace MiddleEarthTravel.Controllers
 
         public ActionResult Index(string arrange)
         {
-            ViewBag.arrange = arrange;
+            //sql to get hazards by most recent -> to List<Hazard> for model
+
             return View("List");
         }
 
         public ActionResult GetDetail()
         {
+            //check member credentials, pass in model?
+
             return View("Detail");
         }
 
@@ -32,8 +35,8 @@ namespace MiddleEarthTravel.Controllers
         public ActionResult ReportSubmit(Hazard newHazard)
         {
             newHazard.TimeOf = DateTime.Now;
-
-
+            hazardSQL.ReportHazard(newHazard);
+            TempData["msg"] = "hazard_reported";
             return View("List");
         }
 

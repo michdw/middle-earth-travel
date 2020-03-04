@@ -13,7 +13,7 @@
 {
     <div>
         @Html.LabelFor(m => m.Region, "Choose the region")
-        @Html.ListBoxFor(m => m.Region, Model.SelectRegion())
+        @Html.DropDownListFor(m => m.Region, Model.SelectRegion())
 
     </div>
     <div>

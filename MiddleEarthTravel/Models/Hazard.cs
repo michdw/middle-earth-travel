@@ -32,6 +32,11 @@ namespace MiddleEarthTravel.Models
             return null;
         }
 
+        public Boolean MemberIsAdmin()
+        {
+            return false;
+        }
+
         public List<SelectListItem> SelectStatus()
         {
             List<SelectListItem> statusList = StatusOptions.Select(x => new SelectListItem() { Value = x.Key.ToString(), Text = x.Value }).ToList();

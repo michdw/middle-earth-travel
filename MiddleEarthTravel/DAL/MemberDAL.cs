@@ -82,7 +82,7 @@ namespace MiddleEarthTravel.DAL
         public void RegisterMember(Member member)
         {
             using SqlConnection db = new SqlConnection(connectionString);
-            db.Execute(registerMember, new { member.DisplayName, password = member.Password, about = member.About, isAdmin = member.IsAdmin, memberSince = member.MemberSince });
+            db.Execute(registerMember, new { member.DisplayName, member.Password, member.About, member.IsAdmin, member.MemberSince });
         }
 
         public void AdminRequest(int memberID)
