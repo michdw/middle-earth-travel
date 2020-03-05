@@ -1,0 +1,16 @@
+﻿@using MiddleEarthTravel.Models
+@model Hazard
+
+
+@foreach (Hazard h in Model.AllByPlace())
+{
+    <ul>
+
+        <li>
+            @h.RegionName
+        </li>
+
+    </ul>
+
+}
+

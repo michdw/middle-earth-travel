@@ -1,0 +1,20 @@
+﻿@using MiddleEarthTravel.Models
+@model Hazard
+
+
+@foreach (Hazard h in Model.AllByRecent())
+{
+    <ul>
+        <li>
+            @h.TimeOf
+        </li>
+        <li>
+            @h.RegionName
+        </li>
+        <li>
+            @h.Description
+        </li>
+    </ul>
+
+}
+

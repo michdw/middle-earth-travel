@@ -1,10 +1,23 @@
-﻿@{
+﻿@using MiddleEarthTravel.Models
+@model Hazard
+
+@{
     ViewBag.Title = "List";
 }
 
-@* 
+@*
     add partial views for arranging by most recent v by location
-    
+
     jquery for switching views
+
 *@
 
+<div id="listByRecent">
+    List by recent
+    @Html.Partial("_ListByRecent", Model)
+</div>
+
+<div id="listByPlace">
+    List by place
+    @Html.Partial("_ListByPlace", Model)
+</div>

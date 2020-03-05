@@ -1,3 +1,4 @@
+C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\obj\Debug\MiddleEarthTravel.csprojAssemblyReference.cache
 C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\bin\MiddleEarthTravel.dll.config
 C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\bin\MiddleEarthTravel.dll
 C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\bin\MiddleEarthTravel.pdb
@@ -77,4 +78,3 @@ C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\b
 C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\obj\Debug\MiddleEarthTravel.csproj.CopyComplete
 C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\obj\Debug\MiddleEarthTravel.dll
 C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\obj\Debug\MiddleEarthTravel.pdb
-C:\Users\Micha\Documents\MEGA\code\TE\post\MiddleEarthTravel\MiddleEarthTravel\obj\Debug\MiddleEarthTravel.csprojAssemblyReference.cache

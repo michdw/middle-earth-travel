@@ -12,8 +12,8 @@
 @using (Html.BeginForm("ReportSubmit", "Hazard", FormMethod.Post))
 {
     <div>
-        @Html.LabelFor(m => m.Region, "Choose the region")
-        @Html.DropDownListFor(m => m.Region, Model.SelectRegion())
+        @Html.LabelFor(m => m.RegionName, "Choose the region")
+        @Html.DropDownListFor(m => m.RegionName, Model.SelectRegion())
 
     </div>
     <div>

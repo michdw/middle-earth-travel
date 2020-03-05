@@ -138,6 +138,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\script.js" />
     <Content Include="Content\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -180,6 +181,8 @@
     <Content Include="Views\Member\OwnInfo.cshtml" />
     <Content Include="Views\Shared\_Messages.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Hazard\_ListByRecent.cshtml" />
+    <Content Include="Views\Hazard\_ListByPlace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

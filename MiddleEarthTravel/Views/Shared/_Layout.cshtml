@@ -6,8 +6,12 @@
     <link rel="stylesheet" href="~/Content/Styles.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @{ 
-        bool logged_in = (bool)(Session["member"]!=null);
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("Scripts", false)
+    <script src="@Url.Content("~/Content/script.js")"></script>
+
+    @{
+        bool logged_in = (bool)(Session["member"] != null);
     }
 </head>
 <body>

@@ -15,14 +15,15 @@ namespace MiddleEarthTravel.Controllers
 
         public ActionResult Index(string arrange)
         {
-            //sql to get hazards by most recent -> to List<Hazard> for model
+            //use arrange to determine how to list hazards
+            Hazard list = new Hazard();
 
-            return View("List");
+            return View("List", list );
         }
 
         public ActionResult GetDetail()
         {
-            //check member credentials, pass in model?
+            //check member credentials, pass them in model?
 
             return View("Detail");
         }

@@ -10,8 +10,10 @@ namespace MiddleEarthTravel.Models
 {
     public class Hazard
     {
+        readonly string connectionString = ConfigurationManager.ConnectionStrings["METravelDB"].ConnectionString;
+
         public int ID { get; set; }
-        public string Region { get; set; }
+        public int RegionID { get; set; }
         public int Status { get; set; }
         public DateTime TimeOf { get; set; }
         public string Location { get; set; }
@@ -25,16 +27,21 @@ namespace MiddleEarthTravel.Models
             {3, "severe" }
         };
 
-        readonly string connectionString = ConfigurationManager.ConnectionStrings["METravelDB"].ConnectionString;
-
-        public List<Comment> Comments()
+        public string RegionName
         {
-            return null;
+            get
+            {
+                HazardDAL hazardSQL = new HazardDAL(connectionString);
+                return hazardSQL.GetRegionName(RegionID);
+            }
         }
 
-        public Boolean MemberIsAdmin()
+        public List<Comment> Comments
         {
-            return false;
+            get
+            {
+                return null;
+            }
         }
 
         public List<SelectListItem> SelectStatus()
@@ -50,6 +57,18 @@ namespace MiddleEarthTravel.Models
 
             List<SelectListItem> regionList = allRegions.Select(x => new SelectListItem() { Value = x, Text = x }).ToList();
             return regionList;
+        }        
+
+        public List<Hazard> AllByRecent()
+        {
+            HazardDAL hazardSQL = new HazardDAL(connectionString);
+            return hazardSQL.GetHazardsByRecent();
+        }
+
+        public List<Hazard> AllByPlace()
+        {
+            HazardDAL hazardSQL = new HazardDAL(connectionString);
+            return hazardSQL.GetHazardsByPlace();
         }
     }
 }
